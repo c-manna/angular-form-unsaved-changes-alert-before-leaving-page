@@ -13,7 +13,7 @@ export class HelloComponent implements ComponentCanDeactivate  {
   @Input() name: string;
 
   constructor(private _confirmationService:ConfirmationService, private _httpService:HttpService){}
-  private hasUnsavedData = false;
+  private hasUnsavedData = true;
 
   canDeactivate(): Observable<boolean> | boolean {
 		if (this.hasUnsavedData) {

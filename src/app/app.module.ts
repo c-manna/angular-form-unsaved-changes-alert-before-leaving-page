@@ -9,7 +9,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { unSaveChangeGuard } from './guard/un-save-change.guard';
 import { HttpService } from './service/http.service';
 import { ConfirmationService  } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
@@ -28,7 +30,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  imports:      [ BrowserModule, FormsModule,RouterModule.forRoot(routes),HttpClientModule],
+  imports:      [ BrowserModule, FormsModule,RouterModule.forRoot(routes),HttpClientModule,ConfirmDialogModule,BrowserAnimationsModule],
   providers: [unSaveChangeGuard,HttpService,ConfirmationService],
   declarations: [ AppComponent, HelloComponent ],
   bootstrap:    [ AppComponent ]
