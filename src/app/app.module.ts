@@ -7,8 +7,8 @@ import { HelloComponent } from './hello.component';
 import { WelcomeComponent } from './welcome.component';
 import { RouterModule, Routes } from '@angular/router';
 import { unSaveChangeGuard } from './guard/un-save-change.guard';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { HttpService } from './service/http.service';
+import { ConfirmationService  } from 'primeng/api';
 
 const routes: Routes = [
   {
@@ -27,8 +27,8 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  imports:      [ BrowserModule, FormsModule,RouterModule.forRoot(routes),ConfirmDialogModule,ConfirmationService ],
-  providers: [unSaveChangeGuard],
+  imports:      [ BrowserModule, FormsModule,RouterModule.forRoot(routes),],
+  providers: [unSaveChangeGuard,HttpService,ConfirmationService],
   declarations: [ AppComponent, HelloComponent ],
   bootstrap:    [ AppComponent ]
 })
