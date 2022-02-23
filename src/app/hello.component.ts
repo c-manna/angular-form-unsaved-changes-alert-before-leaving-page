@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Observable, Observer, of } from 'rxjs';
 import { ComponentCanDeactivate } from './guard/un-save-change.guard';
 import { HttpService } from './service/http.service';
+import {ConfirmationService} from 'primeng/api';
+
 @Component({
   selector: 'hello',
   template: `<h1>Hello {{name}}!</h1><a [routerLink]="'/welcome'">Go to WelcomeComponent</a>`,
@@ -11,6 +13,7 @@ export class HelloComponent implements ComponentCanDeactivate  {
   @Input() name: string;
 
   constructor(private _httpService:HttpService){}
+  private hasUnsavedData = false;
 
   canDeactivate(): Observable<boolean> | boolean {
 		if (this.hasUnsavedData) {
