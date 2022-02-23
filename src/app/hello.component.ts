@@ -12,7 +12,7 @@ import {ConfirmationService} from 'primeng/api';
 export class HelloComponent implements ComponentCanDeactivate  {
   @Input() name: string;
 
-  constructor(private _httpService:HttpService){}
+  constructor(private _confirmationService:ConfirmationService, private _httpService:HttpService){}
   private hasUnsavedData = false;
 
   canDeactivate(): Observable<boolean> | boolean {
