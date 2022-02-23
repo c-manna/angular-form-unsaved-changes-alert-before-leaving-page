@@ -26,6 +26,7 @@ const routes: Routes = [
 ];
 @NgModule({
   imports:      [ BrowserModule, FormsModule,RouterModule.forRoot(routes) ],
+  providers: [unSaveChangeGuard],
   declarations: [ AppComponent, HelloComponent ],
   bootstrap:    [ AppComponent ]
 })
