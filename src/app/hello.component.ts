@@ -16,7 +16,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styles: [`h1 { font-family: Lato; }`],
 })
 export class HelloComponent implements ComponentCanDeactivate, OnDestroy {
-  registerForm: FormGroup;
+  registerForm!: FormGroup;
   submitted = false;
   private hasUnsavedData = false;
   private unsubscribe = new Subject<void>();
