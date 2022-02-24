@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
@@ -12,6 +11,7 @@ import { ConfirmationService  } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  imports:      [ BrowserModule, FormsModule,RouterModule.forRoot(routes),HttpClientModule,ConfirmDialogModule,BrowserAnimationsModule],
+  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule,RouterModule.forRoot(routes),HttpClientModule,ConfirmDialogModule,BrowserAnimationsModule],
   providers: [unSaveChangeGuard,HttpService,ConfirmationService],
   declarations: [ AppComponent, HelloComponent ],
   bootstrap:    [ AppComponent ]
