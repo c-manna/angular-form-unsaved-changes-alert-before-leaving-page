@@ -21,7 +21,7 @@ export class HttpService {
 
     return request$.pipe(
       map((apiResult: HttpResponse<any>) => {
-        const responseObject = apiResult.body;
+        const responseObject = apiResult;
         return responseObject;
       })
     );
