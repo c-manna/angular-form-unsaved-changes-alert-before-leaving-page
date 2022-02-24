@@ -20,16 +20,12 @@ export class HelloComponent implements ComponentCanDeactivate {
     private _confirmationService: ConfirmationService,
     private _httpService: HttpService
   ) {
-    this.registerForm.controls['firstName'].disable();
-    this.registerForm.controls['lastName'].enable();
   }
   ngOnInIt() {
     this.registerForm = this.formBuilder.group(
       {
-        //'firstName': new FormControl({value: 'hello', disabled: true}),
-        title: ['', Validators.required],
-        firstName: ['first', [Validators.required]],
-        lastName: [{ value: 'last', disabled: true }, Validators.required],
+        firstName: ['', [Validators.required]],
+        lastName: [ '', Validators.required],
         email: ['', [Validators.required, Validators.email]],
       }
     );
