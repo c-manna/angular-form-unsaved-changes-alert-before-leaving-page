@@ -28,8 +28,8 @@ export class HelloComponent implements ComponentCanDeactivate, OnDestroy {
   ) {}
 
   ngOnInIt() {
-    this.registerForm = new FormGroup({
-      firstName: new FormControl('')
+    this.registerForm = this.formBuilder.group({
+      firstName: ['']
     });
 		this.isFormValueChanges();
   }
