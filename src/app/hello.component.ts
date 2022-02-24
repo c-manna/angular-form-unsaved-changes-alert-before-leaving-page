@@ -33,10 +33,7 @@ export class HelloComponent implements ComponentCanDeactivate, OnDestroy {
     });
 		this.isFormValueChanges();
   }
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.registerForm.controls;
-  }
+
 
   isFormValueChanges() {
     const form = this.registerForm;
