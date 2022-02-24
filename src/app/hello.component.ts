@@ -8,19 +8,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'hello',
   template: `<h1>CanDeactivate Example</h1>
-	
+	<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+	</form>
 	<a [routerLink]="'/welcome'">Go to WelcomeComponent</a>`,
   styles: [`h1 { font-family: Lato; }`],
 })
 export class HelloComponent implements ComponentCanDeactivate {
   registerForm: FormGroup;
   submitted = false;
+	private hasUnsavedData = false;
+	
   constructor(
     private formBuilder: FormBuilder,
     private _confirmationService: ConfirmationService,
     private _httpService: HttpService
   ) {
   }
+
   ngOnInIt() {
     this.registerForm = this.formBuilder.group(
       {
@@ -34,7 +38,11 @@ export class HelloComponent implements ComponentCanDeactivate {
   get f() {
     return this.registerForm.controls;
   }
-  private hasUnsavedData = false;
+
+	onSubmit(){
+
+	}
+  
 
   canDeactivate(): Observable<boolean> | boolean {
     if (this.hasUnsavedData) {
