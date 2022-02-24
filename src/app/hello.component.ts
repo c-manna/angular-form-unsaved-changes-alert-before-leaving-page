@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Observer, of, Subject, takeUntil } from 'rxjs';
 import { ComponentCanDeactivate } from './guard/un-save-change.guard';
 import { HttpService } from './service/http.service';
@@ -15,7 +15,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 <a herf="javascript:void(0)" [routerLink]="'/welcome'">Go to WelcomeComponent</a>`,
   styles: [`h1 { font-family: Lato; }`],
 })
-export class HelloComponent implements ComponentCanDeactivate, OnDestroy {
+export class HelloComponent implements OnInit, ComponentCanDeactivate, OnDestroy {
   registerForm!: FormGroup;
   submitted = false;
   private hasUnsavedData = false;
@@ -31,10 +31,13 @@ export class HelloComponent implements ComponentCanDeactivate, OnDestroy {
     });
   }
 
-  ngOnInIt() {
-    
+  ngOnInit() {
 		this.isFormValueChanges();
   }
+
+  get formcontrol() {
+		return this.registerForm.controls;
+	}
 
 
   isFormValueChanges() {
