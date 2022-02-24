@@ -3,7 +3,7 @@ import { Observable, Observer, of, Subject, takeUntil } from 'rxjs';
 import { ComponentCanDeactivate } from './guard/un-save-change.guard';
 import { HttpService } from './service/http.service';
 import { ConfirmationService } from 'primeng/api';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'hello',
@@ -29,9 +29,7 @@ export class HelloComponent implements ComponentCanDeactivate, OnDestroy {
 
   ngOnInIt() {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      firstName: new FormControl('')
     });
 		this.isFormValueChanges();
   }
