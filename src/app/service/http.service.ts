@@ -10,11 +10,9 @@ export class HttpService {
 
   fakeApiData() {
     let request$: Observable<any> = new Observable((subscriber) => {
-      const response = JSON.parse(`
-     "name": "abc",
-     "active": true,
-     ...all other json fields that you want
-     `);
+      const response = 
+     {"name": "abc",
+     "active": true};
         subscriber.next(response);
         subscriber.complete();
     });
