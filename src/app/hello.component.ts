@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Observable, Observer, of } from 'rxjs';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { Observable, Observer, of, Subject, takeUntil } from 'rxjs';
 import { ComponentCanDeactivate } from './guard/un-save-change.guard';
 import { HttpService } from './service/http.service';
 import { ConfirmationService } from 'primeng/api';
@@ -13,36 +13,41 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 	<a [routerLink]="'/welcome'">Go to WelcomeComponent</a>`,
   styles: [`h1 { font-family: Lato; }`],
 })
-export class HelloComponent implements ComponentCanDeactivate {
+export class HelloComponent implements ComponentCanDeactivate, OnDestroy {
   registerForm: FormGroup;
   submitted = false;
-	private hasUnsavedData = false;
-	
+  private hasUnsavedData = false;
+  private unsubscribe = new Subject<void>();
+
   constructor(
     private formBuilder: FormBuilder,
     private _confirmationService: ConfirmationService,
     private _httpService: HttpService
-  ) {
-  }
+  ) {}
 
   ngOnInIt() {
-    this.registerForm = this.formBuilder.group(
-      {
-        firstName: ['', [Validators.required]],
-        lastName: [ '', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-      }
-    );
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
   // convenience getter for easy access to form fields
   get f() {
     return this.registerForm.controls;
   }
 
-	onSubmit(){
+  rateAvailabilityFormValueChanges() {
+    const form = this.registerForm;
+    const initialValue = form.value;
+    form.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((value) => {
+      this.hasUnsavedData = Object.keys(initialValue).some(
+        (key) => form.value[key] != initialValue[key]
+      );
+    });
+  }
 
-	}
-  
+  onSubmit() {}
 
   canDeactivate(): Observable<boolean> | boolean {
     if (this.hasUnsavedData) {
@@ -86,5 +91,9 @@ export class HelloComponent implements ComponentCanDeactivate {
         },
       });
     });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
   }
 }
