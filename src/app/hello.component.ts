@@ -85,6 +85,7 @@ export class HelloComponent implements OnInit, ComponentCanDeactivate, OnDestroy
     return new Observable((observer: Observer<boolean>) => {
       this._httpService.fakeApiData().subscribe({
         next: (apiResult) => {
+          console.log(apiResult)
           observer.next(true);
           observer.complete();
         },

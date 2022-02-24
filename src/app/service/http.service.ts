@@ -15,10 +15,8 @@ export class HttpService {
      "active": true,
      ...all other json fields that you want
      `);
-      setTimeout(() => {
         subscriber.next(response);
         subscriber.complete();
-      }, 3000);
     });
 
     return request$.pipe(
