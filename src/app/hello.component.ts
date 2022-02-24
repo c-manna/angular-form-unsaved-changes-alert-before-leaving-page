@@ -10,7 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   template: `<h1>CanDeactivate Example</h1>
 	<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <label>Last Name</label>
-      <input type="text" formControlName="firstName" />
+      <input type="text" [formControlName]="'firstName'" />
 	</form>
 <a herf="javascript:void(0)" [routerLink]="'/welcome'">Go to WelcomeComponent</a>`,
   styles: [`h1 { font-family: Lato; }`],
