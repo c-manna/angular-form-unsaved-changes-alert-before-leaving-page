@@ -31,13 +31,14 @@ export class HelloComponent implements ComponentCanDeactivate, OnDestroy {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     });
+		this.isFormValueChanges();
   }
   // convenience getter for easy access to form fields
   get f() {
     return this.registerForm.controls;
   }
 
-  rateAvailabilityFormValueChanges() {
+  isFormValueChanges() {
     const form = this.registerForm;
     const initialValue = form.value;
     form.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((value) => {
